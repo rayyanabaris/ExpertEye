@@ -180,9 +180,9 @@ const adminLogin = async (req, res, next) => {
       return Response(res, {}, "User not found", 404, null);
     }
 
-    if (adminUser.role !== "admin") {
-      return Response(res, {}, "Authentication Failed: Admin role required", 403, null);
-    }
+    //if (adminUser.role !== "admin") {
+     // return Response(res, {}, "Authentication Failed: Admin role required", 403, null);
+   // }
 
     next(); // Proceed to loginAdmin controller
   } catch (error) {
