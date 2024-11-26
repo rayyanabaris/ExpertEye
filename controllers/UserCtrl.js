@@ -1,4 +1,3 @@
-const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -845,20 +844,8 @@ const FilterUsers = async (req, res) => {
     });
   }
 };
-const getUserById = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  try {
-    const (getaUser) = await Users.aggregate.findById(id);
-    //.populate("state_id")
-    //.exec();
-    res.json(getaUser);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
 
-
-const getUsersById = async (req, res) => {
+const getUserById = async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -994,17 +981,17 @@ const getUsersById = async (req, res) => {
       { $unwind: { path: "$jobSkills", preserveNullAndEmptyArrays: true } },
       {
         $addFields: {
-          gender: "$gender.gender",
-          maritalStatus: "$maritalStatus.marital_status",
-          nationality: "$nationality.nationality",
-          country: "$country.name",
-          state: "$state.state",
-          city: "$city.city",
-          jobExperience: "$jobExperience.job_experience",
-          careerLevel: "$careerLevel.career_level",
-          industry: "$industry.industry",
-          functionalArea: "$functionalArea.functional_area",
-          jobSkills: "$jobSkills.job_skills",
+          //gender: "$gender.gender",
+         // maritalStatus: "$maritalStatus.marital_status",
+       //   nationality: "$nationality.nationality",
+      //    country: "$country.name",
+       //   state: "$state.state",
+      //    city: "$city.city",
+      //    jobExperience: "$jobExperience.job_experience",
+     //     careerLevel: "$careerLevel.career_level",
+      //    industry: "$industry.industry",
+      //    functionalArea: "$functionalArea.functional_area",
+      //    jobSkills: "$jobSkills.job_skills",
           age: {
             $dateDiff: {
               startDate: { $toDate: "$date_of_Birth" },
