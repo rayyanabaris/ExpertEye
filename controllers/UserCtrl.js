@@ -844,7 +844,20 @@ const FilterUsers = async (req, res) => {
     });
   }
 };
-const getUserById = async (req, res) => {
+const getUserById = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const (getaUser) = await Users.aggregate.findById(id);
+    //.populate("state_id")
+    //.exec();
+    res.json(getaUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+
+const getUsersById = async (req, res) => {
   try {
     const id = req.params.id;
 
